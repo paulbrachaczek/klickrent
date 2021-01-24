@@ -1,0 +1,33 @@
+.m-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #FFF;
+
+    &__header {
+        padding: 10px;
+        border-bottom: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        p {
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .a-close-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translate(0, -50%);
+        }
+    }
+
+    &__container {
+        overflow: auto;
+    }
+}

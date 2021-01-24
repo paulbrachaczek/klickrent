@@ -1,0 +1,16 @@
+.o-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #F9F9F9;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    h1 {
+        margin: 0;
+        padding: 0 10px;
+    }
+}
