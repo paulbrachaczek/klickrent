@@ -3,6 +3,7 @@ import Button from '../button/button.component';
 import './modal.style.scss';
 import axios from 'axios';
 import Api from "../../api/api";
+import CategoryList from '../category-list/category-list.component';
 
 const fetchReducer = (state, action) => {
     switch (action.type) {
@@ -36,7 +37,7 @@ const Modal = ({closeModal}) => {
     // }
     const [{products, hasError, isLoading }, dispatch] = useReducer(fetchReducer, {
         products: [],
-        isLoading: true,
+        isLoading: false,
         hasError: false
     });
     const [query, setQuery] = useState("");
@@ -45,7 +46,6 @@ const Modal = ({closeModal}) => {
         dispatch({ type: "FETCH_START" });
         try {
             const results = await api.getProducts(`${query}`);
-            console.log(results)
             dispatch({ type: "FETCH_SUCCESS", payload: results.data })
         } catch (err) {
             dispatch({ type: "FETCH_FAILURE" })
@@ -58,7 +58,7 @@ const Modal = ({closeModal}) => {
         const timeOutId = setTimeout(() => query.length > 3 ? getProducts(query, dispatch, token) : null, 1000);
         return () => cancel("Cancel query") || clearTimeout(timeOutId);
     }, [query]);
-    
+
     return (
         <div className="m-modal">
             <div className="m-modal__container">
@@ -69,21 +69,17 @@ const Modal = ({closeModal}) => {
                 <div>
                     <input type="text" onChange={event => setQuery(event.target.value)}/>   
                 </div>
-                <div className='results'>
+                <div className='m-modal__results'>
                     {hasError && <p>Something went wrong ...</p>}
-                    
-                    <ul>
-                    {products.map(({groupId, name, products}) =>(
-                        <li key={groupId}>
-                            <p>{groupId}{name}</p>
-                            <ul>
-                                {products.map(({name, typeId}) => (
-                                    <li key={typeId}>{name}</li>
-                                ))}
-                            </ul>    
-                        </li>
-                    ))} 
-                    </ul>
+                    {isLoading ? <p>Loading...</p>
+                    : (
+                        <ul>
+                            {products.map(({groupId, name, products}) =>(
+                                <li key={groupId}><CategoryList groupId={groupId} name={name} products={products}/></li>
+                            ))} 
+                        </ul>
+                        )
+                    }
                     
                 </div>
             </div>  
