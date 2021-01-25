@@ -4,6 +4,7 @@ import './modal.style.scss';
 import axios from 'axios';
 import Api from "../../api/api";
 import CategoryList from '../category-list/category-list.component';
+import FormInput from '../form-input/form-input.component';
 
 const fetchReducer = (state, action) => {
     switch (action.type) {
@@ -51,6 +52,7 @@ const Modal = ({closeModal}) => {
             dispatch({ type: "FETCH_FAILURE" })
         }
     };
+    const handleChange = event => setQuery(event.target.value);
       
 
     useEffect(() => {
@@ -66,9 +68,7 @@ const Modal = ({closeModal}) => {
                     <p>Direct request</p>
                     <Button isCloseButton onClick={() => closeModal()}>&#215;</Button>
                 </header>
-                <div>
-                    <input type="text" onChange={event => setQuery(event.target.value)}/>   
-                </div>
+                <FormInput type='text' handleChange={handleChange} />
                 <div className='m-modal__results'>
                     {hasError && <p>Something went wrong ...</p>}
                     {isLoading ? <p>Loading...</p>
