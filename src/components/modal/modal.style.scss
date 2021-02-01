@@ -15,10 +15,13 @@
         justify-content: center;
         position: relative;
         height: 80px;
+        background: #F9F9F9;
 
         p {
             margin: 0;
             text-transform: uppercase;
+            font-size: 2rem;
+            line-height: 1.5;
         }
 
         .a-close-button {
@@ -29,16 +32,14 @@
         }
     }
 
-    &__container {
-    }
 
     &__results {
         display: flex;
         justify-content: center;
         overflow: scroll;
         overflow-x: hidden;
-        height: calc(100vh - 100px);
-        padding: 10px;
+        height: calc(100vh - 160px);
+        padding: 0 10px 10px;
         max-width: 400px;
         margin: 0 auto;
     }

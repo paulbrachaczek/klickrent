@@ -1,22 +1,21 @@
 .m-input {
-  $p : &;
   position: relative;
   width: 100%;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: row;
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
   font-size: 1rem;
-  margin: 10px 0;
+  margin: 10px 0 0;
   padding: 0;
   align-items: center;
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
-
+    -webkit-text-fill-color: #000;
+    -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
   }
 
   input[type="text"] {
@@ -24,18 +23,16 @@
     width: 100%;
     max-width: 380px;
     font-size: 1.5em;
-    line-height: 1.5;
-    border: none;
-    border-bottom: 1px solid #000;
-    border-radius: calculateEm(0px, 16px);
+    line-height: 40px;
+    border: 1px solid #000;
     margin: 0;
-    padding: 5px 0;
-    order: 3;
+    padding: 5px 10px;
     background: #FFF;
     transition: all .3s;
 
     &:focus {
-      border-color: blue;
+      border-color: rgb(3, 124, 49);
+      outline: none;
     }
   }
 }

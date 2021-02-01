@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from './components/header/header.component';
 import Button from './components/button/button.component';
 import Modal from './components/modal/modal.component';
-import './App.css';
 
 const App = () => {
   const [modalShow, setModalShow] = useState(false);

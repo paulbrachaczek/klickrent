@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="m-modal"
+>
+  <div
+    className="m-modal__container"
+  >
+    <header
+      className="m-modal__header"
+    >
+      <p>
+        Direct request
+      </p>
+      <Button
+        isCloseButton={true}
+        onClick={[Function]}
+      >
+        ×
+      </Button>
+    </header>
+    <FormInput
+      handleChange={[Function]}
+      type="text"
+    />
+    <div
+      className="m-modal__results"
+    >
+      <ul />
+    </div>
+  </div>
+</div>
+`;

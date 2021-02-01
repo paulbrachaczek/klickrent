@@ -1,4 +1,4 @@
-import React, {useReducer, useState, useEffect, dispatch} from "react";
+import React, {useReducer, useState, useEffect} from "react";
 import Button from '../button/button.component';
 import './modal.style.scss';
 import axios from 'axios';
@@ -8,6 +8,13 @@ import FormInput from '../form-input/form-input.component';
 
 const fetchReducer = (state, action) => {
     switch (action.type) {
+        case "NO_FETCH":
+        return {
+            ...state,
+            isLoading: false,
+            hasError: false,
+            products: []
+        }
         case "FETCH_START":
         return {
             ...state,
@@ -33,9 +40,6 @@ const fetchReducer = (state, action) => {
 }
 
 const Modal = ({closeModal}) => {
-    // const changeInput = (ev) => {
-    //     setTimeout(()=> console.log(ev.target.value), 3000)
-    // }
     const [{products, hasError, isLoading }, dispatch] = useReducer(fetchReducer, {
         products: [],
         isLoading: false,
@@ -57,7 +61,7 @@ const Modal = ({closeModal}) => {
 
     useEffect(() => {
         const { cancel, token } = axios.CancelToken.source();
-        const timeOutId = setTimeout(() => query.length > 3 ? getProducts(query, dispatch, token) : null, 1000);
+        const timeOutId = setTimeout(() => query.length > 3 ? getProducts(query, dispatch, token) : dispatch({ type: "NO_FETCH" }), 1000);
         return () => cancel("Cancel query") || clearTimeout(timeOutId);
     }, [query]);
 
@@ -70,7 +74,7 @@ const Modal = ({closeModal}) => {
                 </header>
                 <FormInput type='text' handleChange={handleChange} />
                 <div className='m-modal__results'>
-                    {hasError && <p>Something went wrong ...</p>}
+                    {hasError && <p>Something went wrong</p>}
                     {isLoading ? <p>Loading...</p>
                     : (
                         <ul>
@@ -83,8 +87,6 @@ const Modal = ({closeModal}) => {
                     
                 </div>
             </div>  
-            
-            
         </div>
     )
 }
